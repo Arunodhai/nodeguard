@@ -83,7 +83,6 @@ Which phases cover which requirements. Updated during roadmap creation.
 | Requirement | Phase | Status |
 |-------------|-------|--------|
 | SCAN-01 | Phase 1 | Pending |
-| SCAN-02 | Phase 4 | Pending |
 | SCAN-03 | Phase 1 | Pending |
 | SCAN-04 | Phase 2 | Pending |
 | SCAN-05 | Phase 2 | Pending |
@@ -94,6 +93,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | RPRT-01 | Phase 3 | Pending |
 | RPRT-02 | Phase 3 | Pending |
 | RPRT-03 | Phase 3 | Pending |
+| SCAN-02 | Phase 4 | Pending |
 | GITH-01 | Phase 4 | Pending |
 | GITH-02 | Phase 4 | Pending |
 | GITH-03 | Phase 4 | Pending |
@@ -109,4 +109,4 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 ---
 *Requirements defined: 2026-03-14*
-*Last updated: 2026-03-14 after initial definition*
+*Last updated: 2026-03-14 after roadmap creation*
