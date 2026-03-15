@@ -1,0 +1,12 @@
+# Trivy vulnerability ignore list
+# Format: CVE-ID  # reason
+
+# CVE-2026-29786: node-tar hardlink path traversal via drive-relative linkpath
+# Affects: tar (transitive dep of npm bundled in node:20-alpine base image)
+# Fix: tar >= 7.5.11 — not yet available in alpine package repos
+# Risk: Low in our context — container runs as non-root, no untrusted tar extraction
+CVE-2026-29786
+
+# CVE-2026-31802: tar file overwrite via drive-relative symlink traversal
+# Same package and same rationale as above
+CVE-2026-31802

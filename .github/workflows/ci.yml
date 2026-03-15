@@ -102,6 +102,7 @@ jobs:
           severity: CRITICAL,HIGH
           ignore-unfixed: true
           vuln-type: library
+          trivyignores: .trivyignore
 
       - name: Log in to Docker Hub
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
