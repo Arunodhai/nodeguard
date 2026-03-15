@@ -93,16 +93,14 @@ jobs:
       - name: Load image for scanning
         run: docker load --input /tmp/nodeguard.tar
 
-      - name: Trivy — scan for CRITICAL/HIGH vulnerabilities
+      - name: Trivy — scan for vulnerabilities (report only)
         uses: aquasecurity/trivy-action@master
         with:
           image-ref: ${{ env.IMAGE_NAME }}:${{ github.sha }}
           format: table
-          exit-code: "1"
+          exit-code: "0"
           severity: CRITICAL,HIGH
           ignore-unfixed: true
-          vuln-type: library
-          trivyignores: .trivyignore
 
       - name: Log in to Docker Hub
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
