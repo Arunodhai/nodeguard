@@ -1,0 +1,15 @@
+node_modules
+dist
+.git
+.github
+.planning
+.claude
+coverage
+*.md
+*.log
+.env*
+docker-compose*.yml
+helm
+infra
+argocd
+grafana

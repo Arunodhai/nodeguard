@@ -1,0 +1,13 @@
+apiVersion: v2
+name: nodeguard
+description: Node.js vulnerability scanner with web UI and GitHub PR automation
+type: application
+version: 0.1.0
+appVersion: "0.1.0"
+keywords:
+  - security
+  - devsecops
+  - vulnerability
+  - nodejs
+maintainers:
+  - name: NodeGuard

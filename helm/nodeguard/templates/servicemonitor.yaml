@@ -1,0 +1,20 @@
+{{- if .Values.serviceMonitor.enabled }}
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ include "nodeguard.name" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "nodeguard.labels" . | nindent 4 }}
+    # kube-prometheus-stack discovers ServiceMonitors via this label
+    release: kube-prometheus-stack
+spec:
+  selector:
+    matchLabels:
+      {{- include "nodeguard.selectorLabels" . | nindent 6 }}
+  endpoints:
+    - port: http
+      path: /metrics
+      interval: 30s
+      scrapeTimeout: 10s
+{{- end }}

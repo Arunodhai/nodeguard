@@ -1,0 +1,41 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nodeguard
+  namespace: argocd
+  # Finalizer ensures ArgoCD cleans up the app's resources on deletion
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+
+  source:
+    # ── Replace with your actual GitHub repo URL ──────────────────────────────
+    repoURL: https://github.com/YOUR_GITHUB_USERNAME/YOUR_REPO_NAME
+    targetRevision: HEAD
+    path: helm/nodeguard
+
+    helm:
+      releaseName: nodeguard
+      # Values that change per deployment (image tag set by CI via --set)
+      parameters:
+        - name: image.tag
+          value: latest   # CI overwrites this via: argocd app set nodeguard -p image.tag=<sha>
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: nodeguard
+
+  syncPolicy:
+    automated:
+      prune: true       # delete resources removed from git
+      selfHeal: true    # revert manual kubectl changes
+    syncOptions:
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+    retry:
+      limit: 3
+      backoff:
+        duration: 10s
+        factor: 2
+        maxDuration: 3m

@@ -1,0 +1,78 @@
+replicaCount: 1
+
+image:
+  repository: YOUR_DOCKERHUB_USERNAME/nodeguard   # e.g. johndoe/nodeguard
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 3847
+
+ingress:
+  enabled: true
+  className: nginx
+  host: nodeguard.local
+  annotations: {}
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 500m
+    memory: 256Mi
+
+autoscaling:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 3
+  targetCPUUtilizationPercentage: 70
+
+env:
+  PORT: "3847"
+
+# Set via --set secret.githubToken=<token> at deploy time
+secret:
+  githubToken: ""
+
+# Optional default repo URL to pre-fill in the UI
+defaultRepoUrl: ""
+
+livenessProbe:
+  httpGet:
+    path: /health
+    port: 3847
+  initialDelaySeconds: 15
+  periodSeconds: 30
+  timeoutSeconds: 5
+  failureThreshold: 3
+
+readinessProbe:
+  httpGet:
+    path: /health
+    port: 3847
+  initialDelaySeconds: 10
+  periodSeconds: 10
+  timeoutSeconds: 3
+  failureThreshold: 3
+
+serviceAccount:
+  create: true
+  name: nodeguard
+
+podSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 1000
+  fsGroup: 1000
+
+containerSecurityContext:
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: false
+  capabilities:
+    drop:
+      - ALL
+
+# Prometheus ServiceMonitor — requires kube-prometheus-stack to be installed
+serviceMonitor:
+  enabled: false   # set to true after installing kube-prometheus-stack

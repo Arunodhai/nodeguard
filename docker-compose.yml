@@ -1,0 +1,21 @@
+version: "3.9"
+
+services:
+  nodeguard:
+    build:
+      context: .
+      target: runtime
+    image: nodeguard:local
+    container_name: nodeguard
+    ports:
+      - "3847:3847"
+    environment:
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
+      - PORT=3847
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3847/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+    restart: unless-stopped
