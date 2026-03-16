@@ -11,16 +11,15 @@ spec:
 
   source:
     # ── Replace with your actual GitHub repo URL ──────────────────────────────
-    repoURL: https://github.com/YOUR_GITHUB_USERNAME/YOUR_REPO_NAME
+    repoURL: https://github.com/Arunodhai/nodeguard
     targetRevision: HEAD
     path: helm/nodeguard
 
     helm:
       releaseName: nodeguard
-      # Values that change per deployment (image tag set by CI via --set)
       parameters:
-        - name: image.tag
-          value: latest   # CI overwrites this via: argocd app set nodeguard -p image.tag=<sha>
+        - name: serviceMonitor.enabled
+          value: "true"
 
   destination:
     server: https://kubernetes.default.svc

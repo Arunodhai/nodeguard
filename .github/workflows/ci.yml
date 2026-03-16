@@ -120,3 +120,13 @@ jobs:
             ${{ env.IMAGE_NAME }}:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+      - name: Update Helm image tag for ArgoCD
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          sed -i "s/^  tag: .*/  tag: ${{ github.sha }}/" helm/nodeguard/values.yaml
+          git add helm/nodeguard/values.yaml
+          git commit -m "chore: update image tag to ${{ github.sha }} [skip ci]"
+          git push
