@@ -1171,6 +1171,7 @@ function openFixModal(){
 
   modalErr.style.display='none';
   btnStart.disabled=false;
+  btnStart.style.display='';
   btnStart.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:13px;height:13px"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg> Create PRs';
   btnCancel.disabled=false;
   btnCancel.textContent='Cancel';
@@ -1383,6 +1384,7 @@ function openScanModal(){
   scanResult.style.display='none';
   scanErr.style.display='none';
   btnScan.disabled=false;
+  btnScan.style.display='';
   btnScan.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:13px;height:13px"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Scan';
   scanCancel.disabled=false; scanCancel.textContent='Cancel';
   scanModalX.style.display='';
