@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: YOUR_DOCKERHUB_USERNAME/nodeguard   # e.g. johndoe/nodeguard
+  repository: arunodhai/nodeguard
   tag: latest
   pullPolicy: IfNotPresent
 
