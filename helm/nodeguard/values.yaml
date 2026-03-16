@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: arunodhai/nodeguard
-  tag: ec2bde1ff1a92000742b6b58e593fa0467386f06
+  tag: 564fbaae13f3bb62048f6cdc31f348a9d43e905d
   pullPolicy: IfNotPresent
 
 service:
