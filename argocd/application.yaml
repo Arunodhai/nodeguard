@@ -18,6 +18,10 @@ spec:
     helm:
       releaseName: nodeguard
       parameters:
+        - name: image.tag
+          value: local
+        - name: image.pullPolicy
+          value: Never
         - name: serviceMonitor.enabled
           value: "true"
 

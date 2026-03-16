@@ -21,7 +21,7 @@ resource "kind_cluster" "nodeguard" {
       ]
       extra_port_mappings {
         container_port = 80
-        host_port      = 8080
+        host_port      = 8081
         protocol       = "TCP"
       }
       extra_port_mappings {
@@ -100,6 +100,7 @@ resource "helm_release" "ingress_nginx" {
   set {
     name  = "controller.nodeSelector.ingress-ready"
     value = "true"
+    type  = "string"
   }
   set {
     name  = "controller.tolerations[0].key"
